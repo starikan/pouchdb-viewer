@@ -1,0 +1,33 @@
+{
+  // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+  // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+  // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}\\node_modules\\electron\\dist\\electron.exe"
+      },
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true,
+      "smartStep": true,
+      "protocol": "inspector",
+      "program": "${workspaceFolder}\\main.js",
+      "env": {
+        "NODE_ENV": "development",
+        "ELECTRON_ENABLE_LOGGING": true,
+        "ELECTRON_ENABLE_STACK_DUMPING": true,
+        "NODE_TLS_REJECT_UNAUTHORIZED": 0
+      },
+      "outputCapture": "std",
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}

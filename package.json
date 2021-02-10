@@ -1,0 +1,41 @@
+{
+  "name": "PouchDBViewer",
+  "version": "1.0.0",
+  "description": "PouchDB viewer ElectronJS based",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "build": {
+    "appId": "ml.starikan.pouchdb-viewer",
+    "mac": {
+      "category": "public.app-category.business"
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "author": "Sergey Starodubov<4analit@gmail.com>",
+  "license": "No license",
+  "devDependencies": {
+    "electron": "^11.2.3",
+    "electron-builder": "^22.9.1"
+  },
+  "dependencies": {
+    "pouchdb": "^7.2.2",
+    "express-pouchdb": "^4.2.0"
+  }
+}
