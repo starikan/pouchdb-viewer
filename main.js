@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 const { app, BrowserWindow, ipcMain } = require('electron');
 const electron = require('electron');
@@ -22,8 +23,18 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 }
+
+const logger = (text) => {
+  const parentPath = process.env.PORTABLE_EXECUTABLE_DIR ? process.env.PORTABLE_EXECUTABLE_DIR : path.resolve('.');
+  fs.appendFileSync(path.join(parentPath, 'loggerPouchViewer.txt'), text + '\n');
+  console.log(text);
+};
+
 function getUserData() {
-  const basePath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'pouchDB') + '/';
+  const parentPath = process.env.PORTABLE_EXECUTABLE_DIR ? process.env.PORTABLE_EXECUTABLE_DIR : path.resolve('.');
+  const basePath = path.join(parentPath, 'pouchDB') + '/';
+  logger('parentPath: ' + parentPath);
+  logger('basePath: ' + basePath);
   return basePath;
 }
 
@@ -31,10 +42,10 @@ const runViewer = () => {
   try {
     const server = require('express-pouchdb')(PouchDB.defaults({ prefix: getUserData() }), {});
     server.listen(5588);
-    console.log('Viewer: http://localhost:5588/_utils');
-    console.log(`Base Path: ${getUserData()}`);
+    logger('Viewer: http://localhost:5588/_utils');
+    logger(`Base Path: ${getUserData()}`);
   } catch (error) {
-    console.log(error);
+    logger(error);
   }
 };
 
